@@ -12,8 +12,6 @@
   <div class="bg-gray-800 p-6 rounded-xl shadow-lg w-full max-w-md">
     <h1 class="text-3xl font-bold text-center text-green-400 mb-6">🎬 www.herseyindir.com </h1>
 
-
-    <input id="ngrok" placeholder="Ngrok bağlantısı" class="w-full p-2 mb-4 rounded bg-gray-700 text-white" />
     <input id="videoUrl" placeholder="Video URL" class="w-full p-2 mb-4 rounded bg-gray-700 text-white" />
 
     <div class="flex space-x-2 mb-4">
@@ -26,12 +24,13 @@
   </div>
 
   <script>
+    const baseUrl = "https://herseyindir-production.up.railway.app";
+
     async function indirVideo() {
-      const ngrok = document.getElementById("ngrok").value;
       const url = document.getElementById("videoUrl").value;
       const durum = document.getElementById("durum");
       durum.textContent = "🎞️ Video formatı hazırlanıyor...";
-      await fetch(`${ngrok}/indir`, {
+      await fetch(`${baseUrl}/indir`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
@@ -43,7 +42,6 @@
     }
 
     async function getFormats() {
-      const ngrok = document.getElementById("ngrok").value;
       const url = document.getElementById("videoUrl").value;
       const formatlar = document.getElementById("formatlar");
       const durum = document.getElementById("durum");
@@ -51,7 +49,7 @@
       formatlar.innerHTML = "";
       durum.textContent = "🎵 Formatlar aranıyor...";
 
-      const res = await fetch(`${ngrok}/ses-formatlari`, {
+      const res = await fetch(`${baseUrl}/ses-formatlari`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
@@ -74,14 +72,13 @@
     }
 
     async function indirMP3(format_id, title) {
-      const ngrok = document.getElementById("ngrok").value;
       const url = document.getElementById("videoUrl").value;
       const durum = document.getElementById("durum");
       const formatlar = document.getElementById("formatlar");
 
       durum.textContent = "🎶 MP3'e dönüştürülüyor...";
 
-      const response = await fetch(`${ngrok}/indir-mp3`, {
+      const response = await fetch(`${baseUrl}/indir-mp3`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, format_id, title })
@@ -95,7 +92,6 @@
       const blob = await response.blob();
       const blobUrl = window.URL.createObjectURL(blob);
 
-      // Dosya adını başlıkla oluştur (uygunsuz karakterler temizleniyor)
       const safeTitle = title.replace(/[\\/:*?"<>|]/g, "").trim();
       const fileName = `${safeTitle}.mp3`;
 
