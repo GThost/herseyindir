@@ -11,7 +11,7 @@ DOWNLOADS = "downloads"
 os.makedirs(DOWNLOADS, exist_ok=True)
 
 # Railway'de ffmpeg global kurulu
-FFMPEG_PATH = "ffmpeg"
+FFMPEG_PATH = "./ffmpeg/ffmpeg"
 
 
 @app.route("/")
