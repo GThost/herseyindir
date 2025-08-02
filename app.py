@@ -10,8 +10,9 @@ CORS(app)
 DOWNLOADS = "downloads"
 os.makedirs(DOWNLOADS, exist_ok=True)
 
-# Railway'de ffmpeg global kurulu, bu satıra gerek yok:
+# Railway'de ffmpeg global kurulu
 FFMPEG_PATH = "ffmpeg"
+
 
 @app.route("/")
 def home():
