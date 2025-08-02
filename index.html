@@ -24,13 +24,13 @@
   </div>
 
   <script>
-    const baseUrl = "https://herseyindir-production.up.railway.app";
+    const BASE_URL = "https://herseyindir-production.up.railway.app";
 
     async function indirVideo() {
       const url = document.getElementById("videoUrl").value;
       const durum = document.getElementById("durum");
       durum.textContent = "🎞️ Video formatı hazırlanıyor...";
-      await fetch(`${baseUrl}/indir`, {
+      await fetch(`${BASE_URL}/indir`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
@@ -49,7 +49,7 @@
       formatlar.innerHTML = "";
       durum.textContent = "🎵 Formatlar aranıyor...";
 
-      const res = await fetch(`${baseUrl}/ses-formatlari`, {
+      const res = await fetch(`${BASE_URL}/ses-formatlari`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url })
@@ -78,7 +78,7 @@
 
       durum.textContent = "🎶 MP3'e dönüştürülüyor...";
 
-      const response = await fetch(`${baseUrl}/indir-mp3`, {
+      const response = await fetch(`${BASE_URL}/indir-mp3`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ url, format_id, title })

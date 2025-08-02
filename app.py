@@ -11,8 +11,7 @@ DOWNLOADS = "downloads"
 os.makedirs(DOWNLOADS, exist_ok=True)
 
 # Railway'de ffmpeg global kurulu, bu satıra gerek yok:
-FFMPEG_PATH = "ffmpeg"  # Gerekirse elle güncellenebilir
-
+FFMPEG_PATH = "ffmpeg"
 
 @app.route("/")
 def home():
